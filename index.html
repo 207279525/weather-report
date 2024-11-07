@@ -51,22 +51,35 @@
                 text-align: center;
                 box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             }
-            .forecast-item .time {
+            .daily-forecast {
+                display: flex;
+                gap: 15px;
+                overflow-x: auto;
+                padding: 15px 0;
+                -webkit-overflow-scrolling: touch;
+            }
+            .daily-item {
+                flex: 0 0 150px;
+                background: white;
+                padding: 15px;
+                border-radius: 8px;
+                text-align: center;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            }
+            .daily-item .date {
                 font-weight: bold;
                 color: #1a73e8;
             }
-            .forecast-item .temp {
-                font-size: 24px;
+            .daily-item .temp-range {
+                font-size: 18px;
                 margin: 10px 0;
             }
-            .forecast-item .weather-icon {
-                font-size: 32px;
-                margin: 10px 0;
-            }
-            .current-temp {
-                font-size: 48px;
-                font-weight: bold;
-                color: #1a73e8;
+            .temp-chart {
+                margin: 20px 0;
+                padding: 15px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             }
             .alert {
                 background: #fff3cd;
@@ -87,24 +100,24 @@
         <div class="container">
             <div class="header">
                 <h1>🌈 长春市朝阳区天气预报</h1>
-                <p>更新时间：2024-11-07 17:53:41</p>
+                <p>更新时间：2024-11-07 17:58:22</p>
             </div>
 
             <div class="section">
                 <h2>📌 实时天气</h2>
-                <div class="current-temp">-1.2°C</div>
+                <p>当前温度：-1.2°C</p>
                 <p>体感温度：-5.6°C</p>
                 <p>天气状况：多云</p>
                 <p>相对湿度：35%</p>
                 <p>能见度：24.1km</p>
                 <p>气压：1001.7hPa</p>
+                <p>风向：东南风 11.1m/s</p>
             </div>
 
             <div class="section">
                 <h2>💨 空气质量</h2>
                 <p>AQI指数：23</p>
                 <p>PM2.5：16μg/m³</p>
-                <p>风向：东南风 11.1m/s</p>
             </div>
 
             <div class="section">
@@ -306,6 +319,49 @@
                         </div>
         
                     </div>
+                </div>
+            </div>
+    
+            <div class="section">
+                <h2>📅 五天天气预报</h2>
+                <div class="scroll-hint">👈 左右滑动查看更多 👉</div>
+                <div class="daily-forecast">
+    
+                    <div class="daily-item">
+                        <div class="date">11-07</div>
+                        <div class="weather-icon">☁️</div>
+                        <div class="weather">阴</div>
+                        <div class="temp-range">-6.4°C ~ 3.3°C</div>
+                    </div>
+        
+                    <div class="daily-item">
+                        <div class="date">11-08</div>
+                        <div class="weather-icon">⛅</div>
+                        <div class="weather">多云</div>
+                        <div class="temp-range">2.9°C ~ 11.7°C</div>
+                    </div>
+        
+                    <div class="daily-item">
+                        <div class="date">11-09</div>
+                        <div class="weather-icon">⛅</div>
+                        <div class="weather">多云</div>
+                        <div class="temp-range">6.3°C ~ 13.4°C</div>
+                    </div>
+        
+                    <div class="daily-item">
+                        <div class="date">11-10</div>
+                        <div class="weather-icon">🌧</div>
+                        <div class="weather">小雨</div>
+                        <div class="temp-range">0.8°C ~ 11.7°C</div>
+                    </div>
+        
+                    <div class="daily-item">
+                        <div class="date">11-11</div>
+                        <div class="weather-icon">⛅</div>
+                        <div class="weather">多云</div>
+                        <div class="temp-range">-3.0°C ~ 7.4°C</div>
+                    </div>
+        
                 </div>
             </div>
     
