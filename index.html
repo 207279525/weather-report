@@ -1,0 +1,294 @@
+
+    <!DOCTYPE html>
+    <html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>长春市朝阳区天气预报</title>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #f5f5f5;
+                color: #333;
+            }
+            .container {
+                background: white;
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 30px;
+                color: #1a73e8;
+            }
+            .section {
+                margin: 20px 0;
+                padding: 15px;
+                background: #f8f9fa;
+                border-radius: 8px;
+            }
+            .forecast-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+                margin-top: 15px;
+            }
+            .forecast-item {
+                background: white;
+                padding: 15px;
+                border-radius: 8px;
+                text-align: center;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            }
+            .alert {
+                background: #fff3cd;
+                border-left: 4px solid #ffc107;
+                padding: 15px;
+                margin: 10px 0;
+                border-radius: 4px;
+            }
+            .current-temp {
+                font-size: 48px;
+                font-weight: bold;
+                color: #1a73e8;
+            }
+            .weather-icon {
+                font-size: 24px;
+                margin: 10px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>🌈 长春市朝阳区天气预报</h1>
+                <p>更新时间：2024-11-07 17:46:41</p>
+            </div>
+
+            <div class="section">
+                <h2>📌 实时天气</h2>
+                <div class="current-temp">-0.8°C</div>
+                <p>体感温度：-5.1°C</p>
+                <p>天气状况：多云</p>
+                <p>相对湿度：35%</p>
+                <p>能见度：24.1km</p>
+                <p>气压：1001.7hPa</p>
+            </div>
+
+            <div class="section">
+                <h2>💨 空气质量</h2>
+                <p>AQI指数：23</p>
+                <p>PM2.5：16μg/m³</p>
+                <p>风向：东南风 11.1m/s</p>
+            </div>
+
+            <div class="section">
+                <h2>⏰ 24小时预报</h2>
+                <div class="forecast-grid">
+    
+                    <div class="forecast-item">
+                        <div>17:00</div>
+                        <div class="weather-icon">⛅</div>
+                        <div>-0.8°C</div>
+                        <div>多云</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>18:00</div>
+                        <div class="weather-icon">☁️</div>
+                        <div>-0.7°C</div>
+                        <div>阴</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>19:00</div>
+                        <div class="weather-icon">☀️</div>
+                        <div>-0.7°C</div>
+                        <div>雾</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>20:00</div>
+                        <div class="weather-icon">☀️</div>
+                        <div>-0.6°C</div>
+                        <div>雾</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>21:00</div>
+                        <div class="weather-icon">☀️</div>
+                        <div>0.6°C</div>
+                        <div>雾</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>22:00</div>
+                        <div class="weather-icon">☀️</div>
+                        <div>1.7°C</div>
+                        <div>雾</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>23:00</div>
+                        <div class="weather-icon">☀️</div>
+                        <div>2.8°C</div>
+                        <div>雾</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>00:00</div>
+                        <div class="weather-icon">☀️</div>
+                        <div>2.9°C</div>
+                        <div>雾</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>01:00</div>
+                        <div class="weather-icon">🌧</div>
+                        <div>3.0°C</div>
+                        <div>小雨</div>
+                        <div>降水：0.0714mm</div>
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>02:00</div>
+                        <div class="weather-icon">🌧</div>
+                        <div>3.1°C</div>
+                        <div>小雨</div>
+                        <div>降水：0.1795mm</div>
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>03:00</div>
+                        <div class="weather-icon">☀️</div>
+                        <div>3.4°C</div>
+                        <div>雾</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>04:00</div>
+                        <div class="weather-icon">🌧</div>
+                        <div>3.7°C</div>
+                        <div>小雨</div>
+                        <div>降水：0.1271mm</div>
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>05:00</div>
+                        <div class="weather-icon">🌧</div>
+                        <div>4.0°C</div>
+                        <div>小雨</div>
+                        <div>降水：0.0702mm</div>
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>06:00</div>
+                        <div class="weather-icon">🌧</div>
+                        <div>4.6°C</div>
+                        <div>小雨</div>
+                        <div>降水：0.0742mm</div>
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>07:00</div>
+                        <div class="weather-icon">☁️</div>
+                        <div>5.2°C</div>
+                        <div>阴</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>08:00</div>
+                        <div class="weather-icon">☀️</div>
+                        <div>5.8°C</div>
+                        <div>雾</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>09:00</div>
+                        <div class="weather-icon">☀️</div>
+                        <div>6.9°C</div>
+                        <div>雾</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>10:00</div>
+                        <div class="weather-icon">☁️</div>
+                        <div>8.0°C</div>
+                        <div>阴</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>11:00</div>
+                        <div class="weather-icon">☁️</div>
+                        <div>9.1°C</div>
+                        <div>阴</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>12:00</div>
+                        <div class="weather-icon">⛅</div>
+                        <div>10.0°C</div>
+                        <div>多云</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>13:00</div>
+                        <div class="weather-icon">⛅</div>
+                        <div>10.8°C</div>
+                        <div>多云</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>14:00</div>
+                        <div class="weather-icon">⛅</div>
+                        <div>11.7°C</div>
+                        <div>多云</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>15:00</div>
+                        <div class="weather-icon">⛅</div>
+                        <div>10.6°C</div>
+                        <div>多云</div>
+                        
+                    </div>
+        
+                    <div class="forecast-item">
+                        <div>16:00</div>
+                        <div class="weather-icon">☁️</div>
+                        <div>9.6°C</div>
+                        <div>阴</div>
+                        
+                    </div>
+        
+                </div>
+            </div>
+    
+        </div>
+        <footer style="text-align: center; margin-top: 20px; color: #666;">
+            <p>数据来源：彩云天气</p>
+        </footer>
+    </body>
+    </html>
+    
