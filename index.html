@@ -60,13 +60,87 @@
                 font-size: 24px;
                 margin: 10px 0;
             }
+            .forecast-scroll {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 15px 0;
+                margin: 0 -15px;
+            }
+            
+            .forecast-container {
+                display: flex;
+                gap: 15px;
+                padding: 0 15px;
+                min-width: min-content;
+            }
+            
+            .forecast-item {
+                flex: 0 0 120px;
+                background: white;
+                padding: 15px;
+                border-radius: 8px;
+                text-align: center;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            }
+            
+            .forecast-item .time {
+                font-weight: bold;
+                color: #1a73e8;
+            }
+            
+            .forecast-item .temp {
+                font-size: 24px;
+                margin: 10px 0;
+            }
+            
+            .forecast-item .weather-icon {
+                font-size: 32px;
+                margin: 10px 0;
+            }
+            
+            .forecast-item .weather {
+                color: #666;
+            }
+            
+            .forecast-item .precipitation {
+                color: #1a73e8;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+            
+            /* 添加滚动条样式 */
+            .forecast-scroll::-webkit-scrollbar {
+                height: 6px;
+            }
+            
+            .forecast-scroll::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 3px;
+            }
+            
+            .forecast-scroll::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 3px;
+            }
+            
+            .forecast-scroll::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+            
+            /* 添加滑动提示 */
+            .scroll-hint {
+                text-align: center;
+                color: #666;
+                font-size: 0.9em;
+                margin: 10px 0;
+            }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="header">
                 <h1>🌈 长春市朝阳区天气预报</h1>
-                <p>更新时间：2024-11-07 17:47:43</p>
+                <p>更新时间：2024-11-07 17:49:48</p>
             </div>
 
             <div class="section">
@@ -88,203 +162,205 @@
 
             <div class="section">
                 <h2>⏰ 24小时预报</h2>
-                <div class="forecast-grid">
+                <div class="scroll-hint">👈 左右滑动查看更多 👉</div>
+                <div class="forecast-scroll">
+                    <div class="forecast-container">
     
                     <div class="forecast-item">
-                        <div>17:00</div>
+                        <div class="time">17:00</div>
                         <div class="weather-icon">⛅</div>
-                        <div>-0.8°C</div>
-                        <div>多云</div>
+                        <div class="temp">-0.8°C</div>
+                        <div class="weather">多云</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>18:00</div>
+                        <div class="time">18:00</div>
                         <div class="weather-icon">☁️</div>
-                        <div>-0.7°C</div>
-                        <div>阴</div>
+                        <div class="temp">-0.7°C</div>
+                        <div class="weather">阴</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>19:00</div>
+                        <div class="time">19:00</div>
                         <div class="weather-icon">☀️</div>
-                        <div>-0.7°C</div>
-                        <div>雾</div>
+                        <div class="temp">-0.7°C</div>
+                        <div class="weather">雾</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>20:00</div>
+                        <div class="time">20:00</div>
                         <div class="weather-icon">☀️</div>
-                        <div>-0.6°C</div>
-                        <div>雾</div>
+                        <div class="temp">-0.6°C</div>
+                        <div class="weather">雾</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>21:00</div>
+                        <div class="time">21:00</div>
                         <div class="weather-icon">☀️</div>
-                        <div>0.6°C</div>
-                        <div>雾</div>
+                        <div class="temp">0.6°C</div>
+                        <div class="weather">雾</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>22:00</div>
+                        <div class="time">22:00</div>
                         <div class="weather-icon">☀️</div>
-                        <div>1.7°C</div>
-                        <div>雾</div>
+                        <div class="temp">1.7°C</div>
+                        <div class="weather">雾</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>23:00</div>
+                        <div class="time">23:00</div>
                         <div class="weather-icon">☀️</div>
-                        <div>2.8°C</div>
-                        <div>雾</div>
+                        <div class="temp">2.8°C</div>
+                        <div class="weather">雾</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>00:00</div>
+                        <div class="time">00:00</div>
                         <div class="weather-icon">☀️</div>
-                        <div>2.9°C</div>
-                        <div>雾</div>
+                        <div class="temp">2.9°C</div>
+                        <div class="weather">雾</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>01:00</div>
+                        <div class="time">01:00</div>
                         <div class="weather-icon">🌧</div>
-                        <div>3.0°C</div>
-                        <div>小雨</div>
-                        <div>降水：0.0714mm</div>
+                        <div class="temp">3.0°C</div>
+                        <div class="weather">小雨</div>
+                        <div class="precipitation">降水：0.0714mm</div>
                     </div>
         
                     <div class="forecast-item">
-                        <div>02:00</div>
+                        <div class="time">02:00</div>
                         <div class="weather-icon">🌧</div>
-                        <div>3.1°C</div>
-                        <div>小雨</div>
-                        <div>降水：0.1795mm</div>
+                        <div class="temp">3.1°C</div>
+                        <div class="weather">小雨</div>
+                        <div class="precipitation">降水：0.1795mm</div>
                     </div>
         
                     <div class="forecast-item">
-                        <div>03:00</div>
+                        <div class="time">03:00</div>
                         <div class="weather-icon">☀️</div>
-                        <div>3.4°C</div>
-                        <div>雾</div>
+                        <div class="temp">3.4°C</div>
+                        <div class="weather">雾</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>04:00</div>
+                        <div class="time">04:00</div>
                         <div class="weather-icon">🌧</div>
-                        <div>3.7°C</div>
-                        <div>小雨</div>
-                        <div>降水：0.1271mm</div>
+                        <div class="temp">3.7°C</div>
+                        <div class="weather">小雨</div>
+                        <div class="precipitation">降水：0.1271mm</div>
                     </div>
         
                     <div class="forecast-item">
-                        <div>05:00</div>
+                        <div class="time">05:00</div>
                         <div class="weather-icon">🌧</div>
-                        <div>4.0°C</div>
-                        <div>小雨</div>
-                        <div>降水：0.0702mm</div>
+                        <div class="temp">4.0°C</div>
+                        <div class="weather">小雨</div>
+                        <div class="precipitation">降水：0.0702mm</div>
                     </div>
         
                     <div class="forecast-item">
-                        <div>06:00</div>
+                        <div class="time">06:00</div>
                         <div class="weather-icon">🌧</div>
-                        <div>4.6°C</div>
-                        <div>小雨</div>
-                        <div>降水：0.0742mm</div>
+                        <div class="temp">4.6°C</div>
+                        <div class="weather">小雨</div>
+                        <div class="precipitation">降水：0.0742mm</div>
                     </div>
         
                     <div class="forecast-item">
-                        <div>07:00</div>
+                        <div class="time">07:00</div>
                         <div class="weather-icon">☁️</div>
-                        <div>5.2°C</div>
-                        <div>阴</div>
+                        <div class="temp">5.2°C</div>
+                        <div class="weather">阴</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>08:00</div>
+                        <div class="time">08:00</div>
                         <div class="weather-icon">☀️</div>
-                        <div>5.8°C</div>
-                        <div>雾</div>
+                        <div class="temp">5.8°C</div>
+                        <div class="weather">雾</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>09:00</div>
+                        <div class="time">09:00</div>
                         <div class="weather-icon">☀️</div>
-                        <div>6.9°C</div>
-                        <div>雾</div>
+                        <div class="temp">6.9°C</div>
+                        <div class="weather">雾</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>10:00</div>
+                        <div class="time">10:00</div>
                         <div class="weather-icon">☁️</div>
-                        <div>8.0°C</div>
-                        <div>阴</div>
+                        <div class="temp">8.0°C</div>
+                        <div class="weather">阴</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>11:00</div>
+                        <div class="time">11:00</div>
                         <div class="weather-icon">☁️</div>
-                        <div>9.1°C</div>
-                        <div>阴</div>
+                        <div class="temp">9.1°C</div>
+                        <div class="weather">阴</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>12:00</div>
+                        <div class="time">12:00</div>
                         <div class="weather-icon">⛅</div>
-                        <div>10.0°C</div>
-                        <div>多云</div>
+                        <div class="temp">10.0°C</div>
+                        <div class="weather">多云</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>13:00</div>
+                        <div class="time">13:00</div>
                         <div class="weather-icon">⛅</div>
-                        <div>10.8°C</div>
-                        <div>多云</div>
+                        <div class="temp">10.8°C</div>
+                        <div class="weather">多云</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>14:00</div>
+                        <div class="time">14:00</div>
                         <div class="weather-icon">⛅</div>
-                        <div>11.7°C</div>
-                        <div>多云</div>
+                        <div class="temp">11.7°C</div>
+                        <div class="weather">多云</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>15:00</div>
+                        <div class="time">15:00</div>
                         <div class="weather-icon">⛅</div>
-                        <div>10.6°C</div>
-                        <div>多云</div>
+                        <div class="temp">10.6°C</div>
+                        <div class="weather">多云</div>
                         
                     </div>
         
                     <div class="forecast-item">
-                        <div>16:00</div>
+                        <div class="time">16:00</div>
                         <div class="weather-icon">☁️</div>
-                        <div>9.6°C</div>
-                        <div>阴</div>
+                        <div class="temp">9.6°C</div>
+                        <div class="weather">阴</div>
                         
                     </div>
         
+                    </div>
                 </div>
             </div>
-    
         </div>
         <footer style="text-align: center; margin-top: 20px; color: #666;">
             <p>数据来源：彩云天气</p>
