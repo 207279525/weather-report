@@ -1,0 +1,29 @@
+name: Weather Push
+
+on:
+  workflow_dispatch:  # 只保留手动触发
+
+jobs:
+  push-weather:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests pytz
+    
+    - name: Run weather push script
+      env:
+        WXPUSHER_TOKEN: ${{ secrets.WXPUSHER_TOKEN }}
+        WXPUSHER_UID: ${{ secrets.WXPUSHER_UID }}
+        WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+        CITY_ID: ${{ secrets.CITY_ID }}
+      run: python action.py
