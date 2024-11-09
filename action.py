@@ -112,7 +112,7 @@ def get_weather_icon(weather, precipitation=0):
             return "🌫️"
     elif "大风" in weather:
         return "🌪️"
-    elif "阴" in weather:
+    elif "" in weather:
         return "☁️"
     elif "多云" in weather:
         return "⛅"
@@ -287,11 +287,11 @@ def format_weather_message(weather_data):
     # 添加预警信息（如果有）
     if weather_data['alerts']:
         message += "\n\n⚠️ 预警信息"
-        message += "\n━━━━━━━━━━"
+        message += "\n━━━━━━━━━━━━"
         for alert in weather_data['alerts']:
             message += f"\n{alert['title']}\n{alert['description']}"
 
-    # 添加24小时预报，使用表格样式展示
+    # 添加24小时预报，使用表格样式���示
     message += "\n\n⏰ 未来24小时预报"
     message += "\n━━━━━━━━━━"
     
@@ -375,7 +375,7 @@ def push_to_wxpusher(message):
             print(f"消息成功推送给 {len(WXPUSHER_UIDS)} 个用户")
             return True
         else:
-            print(f"消息��送失败: {result['msg']}")
+            print(f"消息推送失败: {result['msg']}")
             return False
     except Exception as e:
         print(f"推送消息时发生错误: {str(e)}")
@@ -703,11 +703,11 @@ def generate_html_content(weather_data):
             </div>
     """
 
-    html += """
+    html += f"""
         </div>
         <footer>
             <p>数据来源：彩云天气</p>
-            <p>更新时间：{datetime.now(pytz.timezone('Asia/Shanghai')).strftime("%Y-%m-%d %H:%M:%S")}</p>
+            <p>更新时间：{current_time}</p>
         </footer>
     </body>
     </html>
@@ -715,57 +715,28 @@ def generate_html_content(weather_data):
     return html
 
 def upload_to_github(content):
-    """上传HTML内容到GitHub Pages"""
+    """更新根目录下的 index.html 文件"""
     try:
-        github_token = os.getenv("GH_TOKEN")
-        if not github_token:
-            print("错误: 未找到 GH_TOKEN")
-            return False
-            
-        headers = {
-            "Authorization": f"Bearer {github_token}",
-            "Accept": "application/vnd.github.v3+json"
-        }
-        
-        # 准备文件内容
-        current_time = datetime.now(pytz.timezone('Asia/Shanghai')).strftime("%Y-%m-%d %H:%M:%S")
-        data = {
-            "message": f"Update weather report at {current_time}",
-            "content": base64.b64encode(content.encode()).decode(),
-            "branch": "gh-pages"
-        }
-        
-        # 使用环境变量中的用户名
-        repo_owner = os.getenv("GITHUB_USERNAME", "207279525")
-        repo_name = "weather-report"
-        repo_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/index.html"
-        
-        print(f"正在更新文件: {repo_url}")
-        
-        # 获取现有文件的SHA
+        # 直接写入本地文件
         try:
-            response = requests.get(repo_url, headers=headers)
-            print(f"获取文件状态码: {response.status_code}")
-            if response.status_code == 200:
-                data["sha"] = response.json()["sha"]
-                print(f"获取到文件SHA: {data['sha']}")
-        except Exception as e:
-            print(f"获取SHA时发生错误: {str(e)}")
-        
-        # 更新文件
-        response = requests.put(repo_url, headers=headers, json=data)
-        print(f"更新文件状态码: {response.status_code}")
-        print(f"更新响应: {response.text}")
-        
-        if response.status_code in [200, 201]:
-            print("成功更新 GitHub Pages")
+            with open('index.html', 'w', encoding='utf-8') as f:
+                f.write(content)
+            print("成功更新本地 index.html 文件")
+            
+            # 验证文件是否正确写入
+            with open('index.html', 'r', encoding='utf-8') as f:
+                written_content = f.read()
+                if written_content == content:
+                    print("文件内容验证成功")
+                else:
+                    print("警告：文件内容可能未正确写入")
             return True
-        else:
-            print(f"更新失败: {response.status_code} - {response.text}")
+        except Exception as e:
+            print(f"写入文件时发生错误: {str(e)}")
             return False
             
     except Exception as e:
-        print(f"上传到GitHub时发生错误: {str(e)}")
+        print(f"更新文件时发生错误: {str(e)}")
         import traceback
         print(f"错误堆栈: {traceback.format_exc()}")
         return False
@@ -861,9 +832,8 @@ def generate_short_message(weather_data):
         for alert in weather_data['alerts']:
             message += f"\n• {alert['title']}"
 
-    # 使用正确的仓库名构建链接
-    github_username = os.getenv("GITHUB_USERNAME", "207279525")
-    message += f"\n\n📱 [点击查看详细天气预报](https://{github_username}.github.io/weather-report/)"
+    # 修改链接为正确的地址
+    message += f"\n\n📱 [点击查看详细天气预报](https://207279525.github.io/weather-report/)"
     message += "\n📍 [点击查询全国天气](https://xuyang-ruwen.fra1.zeabur.app/)"
     
     return message
