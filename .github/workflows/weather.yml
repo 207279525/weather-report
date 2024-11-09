@@ -2,22 +2,25 @@ name: Weather Report
 
 on:
   schedule:
-    - cron: '0 0,12 * * *'  # UTC 0:00 和 12:00,对应北京时间 8:00 和 20:00
-  watch:  # 监听仓库的 star/unstar 事件
+    - cron: '0 0,12 * * *'
+  watch:
     types: [started, deleted]
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:
 
 jobs:
   push-weather:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # 添加写入权限
-      pages: write    # 添加 Pages 权限
-      
+      contents: write
+      pages: write
+      id-token: write
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
     steps:
     - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0  # 获取完整历史记录
     
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -29,24 +32,26 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests python-dotenv pytz
         
-    - name: Configure Git
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
-        
     - name: Run weather script
       env:
         WXPUSHER_TOKEN: ${{ secrets.WXPUSHER_TOKEN }}
         WXPUSHER_UID: ${{ secrets.WXPUSHER_UID }}
         WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
         TRIGGER_EVENT: ${{ github.event_name }}
       run: python action.py
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: '.'
         
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+      id: deployment
+      uses: actions/deploy-pages@v2
       with:
-        github_token: ${{ secrets.GH_TOKEN }}
-        publish_dir: .
-        publish_branch: gh-pages
-        force_orphan: true
+        token: ${{ secrets.GH_TOKEN }}

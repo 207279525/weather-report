@@ -375,7 +375,7 @@ def push_to_wxpusher(message):
             print(f"消息成功推送给 {len(WXPUSHER_UIDS)} 个用户")
             return True
         else:
-            print(f"消息推送失败: {result['msg']}")
+            print(f"消息��送失败: {result['msg']}")
             return False
     except Exception as e:
         print(f"推送消息时发生错误: {str(e)}")
@@ -398,7 +398,7 @@ def generate_html_content(weather_data):
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <title>长春市朝阳区天气预报</title>
+        <title>长春市朝阳区天气预</title>
         <style>
             * {{
                 box-sizing: border-box;
@@ -718,6 +718,10 @@ def upload_to_github(content):
     """上传HTML内容到GitHub Pages"""
     try:
         github_token = os.getenv("GH_TOKEN")
+        if not github_token:
+            print("错误: 未找到 GH_TOKEN")
+            return False
+            
         headers = {
             "Authorization": f"Bearer {github_token}",
             "Accept": "application/vnd.github.v3+json"
@@ -733,16 +737,26 @@ def upload_to_github(content):
         
         # 使用环境变量中的用户名
         repo_owner = os.getenv("GITHUB_USERNAME", "207279525")
-        repo_name = "weather-push"  # 确保这是你的仓库名
+        repo_name = "weather-report"
         repo_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/index.html"
         
-        # 获取现有文件的SHA（如果存在）
-        response = requests.get(repo_url, headers=headers)
-        if response.status_code == 200:
-            data["sha"] = response.json()["sha"]
+        print(f"正在更新文件: {repo_url}")
+        
+        # 获取现有文件的SHA
+        try:
+            response = requests.get(repo_url, headers=headers)
+            print(f"获取文件状态码: {response.status_code}")
+            if response.status_code == 200:
+                data["sha"] = response.json()["sha"]
+                print(f"获取到文件SHA: {data['sha']}")
+        except Exception as e:
+            print(f"获取SHA时发生错误: {str(e)}")
         
         # 更新文件
         response = requests.put(repo_url, headers=headers, json=data)
+        print(f"更新文件状态码: {response.status_code}")
+        print(f"更新响应: {response.text}")
+        
         if response.status_code in [200, 201]:
             print("成功更新 GitHub Pages")
             return True
@@ -796,7 +810,7 @@ def generate_short_message(weather_data):
     snow_hours = sum(1 for f in weather_data['forecast'][:24] if "雪" in f['weather'])
     
     message += f"""
-━━━━━━━━━━
+━━━━━━━━━━━━
 📅 更新时间：{current_time}
 
 🌡️ 实时天气
@@ -847,9 +861,9 @@ def generate_short_message(weather_data):
         for alert in weather_data['alerts']:
             message += f"\n• {alert['title']}"
 
-    # 使用环境变量中的用户名构建链接
+    # 使用正确的仓库名构建链接
     github_username = os.getenv("GITHUB_USERNAME", "207279525")
-    message += f"\n\n📱 [点击查看详细天气预报](https://{github_username}.github.io/weather-push/)"
+    message += f"\n\n📱 [点击查看详细天气预报](https://{github_username}.github.io/weather-report/)"
     message += "\n📍 [点击查询全国天气](https://xuyang-ruwen.fra1.zeabur.app/)"
     
     return message
@@ -864,13 +878,12 @@ def main():
     
     weather_data = get_weather()
     if weather_data:
-        # 只在定时任务和手动触发时更新 GitHub Pages
-        if trigger_event in ["schedule", "workflow_dispatch"]:
-            html_content = generate_html_content(weather_data)
-            if upload_to_github(html_content):
-                print("HTML内容已成功上传到GitHub Pages")
-            else:
-                print("上传HTML内容失败")
+        # 总是生成并更新 HTML 内容，不再根据触发事件类型判断
+        html_content = generate_html_content(weather_data)
+        if upload_to_github(html_content):
+            print("HTML内容已成功上传到GitHub Pages")
+        else:
+            print("上传HTML内容失败")
         
         # 生成并推送消息
         message = generate_short_message(weather_data)
@@ -878,6 +891,10 @@ def main():
         print(f"任务执行{'成功' if success else '失败'}")
     else:
         print("获取天气数据失败")
+
+    # 打印当前时间，用于调试
+    current_time = datetime.now(pytz.timezone('Asia/Shanghai')).strftime("%Y-%m-%d %H:%M:%S")
+    print(f"任务完成时间: {current_time}")
 
 if __name__ == "__main__":
     main()
